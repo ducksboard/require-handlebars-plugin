@@ -388,7 +388,7 @@ define([
         fetchText(path, function(text) {
           // for some reason it doesn't include hbs _first_ when i don't add it here...
           var nodes = Handlebars.parse(text);
-          var partials = findPartialDeps( nodes );
+          var partials = findPartialDeps( nodes ).value();
           var meta = getMetaData( nodes );
           var extDeps = getExternalDeps( nodes );
           var vars = extDeps.vars;
