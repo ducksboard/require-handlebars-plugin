@@ -206,7 +206,7 @@ define([
       var partialDeps = [];
 
       function recursiveNodeSearch( statements, res ) {
-        _(statements).forEach(function ( statement ) {
+        _.forEach(statements, function ( statement ) {
           if ( statement && statement.type && statement.type === 'partial' ) {
             res.push(statement.partialName.name);
           }
@@ -272,7 +272,7 @@ define([
         var flag = false;
 
         // loop through each statement
-        _(statements).forEach(function(statement) {
+        _.forEach(statements, function(statement) {
           var parts;
           var part;
           var sideways;
@@ -296,7 +296,7 @@ define([
 
             // grab the params
             if ( statement.params && typeof Handlebars.helpers[statement.id.string] === 'undefined') {
-              _(statement.params).forEach(function(param) {
+              _.forEach(statement.params, function(param) {
                 if ( _(paramsWithoutParts).contains(param.original)
                   || param instanceof Handlebars.AST.StringNode
                   || param instanceof Handlebars.AST.IntegerNode
@@ -468,7 +468,7 @@ define([
                 // In dev mode in the browser
                 if ( require.isBrowser && ! config.isBuild ) {
                   head = document.head || document.getElementsByTagName('head')[0];
-                  _(metaObj.styles).forEach(function (style) {
+                  _.forEach(metaObj.styles, function (style) {
                     if ( !styleMap[style] ) {
                       linkElem = document.createElement('link');
                       linkElem.href = config.baseUrl + devStyleDirectory + style + '.css';
@@ -489,7 +489,7 @@ define([
                         return '@import url('+style+'.css);\n';
                       }
                       return '';
-                    }).join('\n');
+                    }).join('\n').value();
 
                     // I write out my import statements to a file in order to help me build stuff.
                     // Then I use a tool to inline my import statements afterwards. (you can run r.js on it too)
